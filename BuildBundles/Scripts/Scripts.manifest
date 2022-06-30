@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 2026882446
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: scripts_assets_huatuobuildcache_assetbundlesourcedata_standalonewindows64_hotfix_dll_bytes.bundle
+      Dependencies: {}
+    Info_1:
+      Name: scripts_assets_huatuobuildcache_assetbundlesourcedata_standalonewindows64_mscorlib_dll_bytes.bundle
+      Dependencies: {}
+    Info_2:
+      Name: scripts_assets_huatuobuildcache_assetbundlesourcedata_standalonewindows64_system_core_dll_bytes.bundle
+      Dependencies: {}
+    Info_3:
+      Name: scripts_assets_huatuobuildcache_assetbundlesourcedata_standalonewindows64_system_dll_bytes.bundle
+      Dependencies: {}

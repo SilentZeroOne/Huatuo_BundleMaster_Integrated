@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.Build.Player;
 using Debug = UnityEngine.Debug;
 
 namespace BM
@@ -33,6 +34,15 @@ namespace BM
                 Directory.CreateDirectory(encryptAssetFolderPath);
             }
             DeleteHelper.DeleteDir(encryptAssetFolderPath);
+
+            #region Huatuo 编译dll
+
+            var target = EditorUserBuildSettings.activeBuildTarget;
+            CompileDll(GetDllBuildOutputDirByTarget(target), target);
+            CopyDllToAssets(target);
+            
+            #endregion
+            
             //记录所有加载路径
             HashSet<string> allAssetLoadPath = new HashSet<string>();
             //构建所有分包
@@ -629,6 +639,80 @@ namespace BM
             Regex seperatorReg = new Regex(pattern, RegexOptions.IgnorePatternWhitespace);
             keyText = seperatorReg.Replace(keyText, "__").Trim();
             return keyText;
+        }
+        
+        public static string DllBuildOutputDir => Path.GetFullPath($"{Application.dataPath}/../Temp/Huatuo/build");
+        public static string HuatuoBuildCacheDir => Application.dataPath + "/HuatuoBuildCache";
+        public static string AssetBundleSourceDataTempDir => $"{HuatuoBuildCacheDir}/AssetBundleSourceData";
+        public static string HuatuoDataDir => $"{Application.dataPath}/../HuatuoData";
+        public static string AssembliesPostIl2CppStripDir => $"{HuatuoDataDir}/AssembliesPostIl2CppStrip";
+        
+        
+        public static string GetDllBuildOutputDirByTarget(BuildTarget target)
+        {
+            return $"{DllBuildOutputDir}/{target}";
+        }
+        
+        public static string GetAssetBundleTempDirByTarget(BuildTarget target)
+        {
+            return $"{AssetBundleSourceDataTempDir}/{target}";
+        }
+        
+        public static string ToReleateAssetPath(string s)
+        {
+            return s.Substring(s.IndexOf("Assets/"));
+        }
+        
+        private static void CreateDirIfNotExists(string dirName)
+        {
+            if (!Directory.Exists(dirName))
+            {
+                Directory.CreateDirectory(dirName);
+            }
+        }
+        
+        private static void CompileDll(string buildDir, BuildTarget target)
+        {
+            var group = BuildPipeline.GetBuildTargetGroup(target);
+
+            ScriptCompilationSettings scriptCompilationSettings = new ScriptCompilationSettings();
+            scriptCompilationSettings.group = group;
+            scriptCompilationSettings.target = target;
+            CreateDirIfNotExists(buildDir);
+            ScriptCompilationResult scriptCompilationResult = PlayerBuildInterface.CompilePlayerScripts(scriptCompilationSettings, buildDir);
+            foreach (var ass in scriptCompilationResult.assemblies)
+            {
+                Debug.LogFormat("compile assemblies:{0}", ass);
+            }
+        }
+
+        private static void CopyDllToAssets(BuildTarget target)
+        {
+            //创建 Dll 包
+            var tempDir = GetAssetBundleTempDirByTarget(target);
+            CreateDirIfNotExists(tempDir);
+            
+            foreach(var dll in AssetComponentConfig.HotfixDlls)
+            {
+                string dllPath = $"{GetDllBuildOutputDirByTarget(target)}/{dll}";
+                string dllBytesPath = $"{tempDir}/{dll}.bytes";
+                File.Copy(dllPath, dllBytesPath, true);
+            }
+            
+            string aotDllDir = $"{AssembliesPostIl2CppStripDir}/{target}";
+            foreach (var dll in AssetComponentConfig.AotDlls)
+            {
+                string dllPath = $"{aotDllDir}/{dll}";
+                if(!File.Exists(dllPath))
+                {
+                    Debug.LogError($"ab中添加AOT补充元数据dll:{dllPath} 时发生错误,文件不存在。需要构建一次主包后才能生成裁剪后的AOT dll");
+                    continue;
+                }
+                string dllBytesPath = $"{tempDir}/{dll}.bytes";
+                File.Copy(dllPath, dllBytesPath, true);
+            }
+            
+            AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
         }
     }
 }

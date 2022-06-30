@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+#pragma warning disable CS0436
 namespace ET
 {
     public static class ETTaskHelper

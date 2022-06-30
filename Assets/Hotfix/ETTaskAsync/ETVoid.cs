@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-
+#pragma warning disable CS0436
 namespace ET
 {
     [AsyncMethodBuilder(typeof (AsyncETVoidMethodBuilder))]

@@ -52,42 +52,42 @@ namespace Huatuo
             return $"{DllBuildOutputDir}/{target}";
         }
 
-        [MenuItem("Huatuo/CompileDll/ActiveBuildTarget")]
+        //[MenuItem("Huatuo/CompileDll/ActiveBuildTarget")]
         public static void CompileDllActiveBuildTarget()
         {
             var target = EditorUserBuildSettings.activeBuildTarget;
             CompileDll(GetDllBuildOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/CompileDll/Win64")]
+        //[MenuItem("Huatuo/CompileDll/Win64")]
         public static void CompileDllWin64()
         {
             var target = BuildTarget.StandaloneWindows64;
             CompileDll(GetDllBuildOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/CompileDll/Linux64")]
+        //[MenuItem("Huatuo/CompileDll/Linux64")]
         public static void CompileDllLinux()
         {
             var target = BuildTarget.StandaloneLinux64;
             CompileDll(GetDllBuildOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/CompileDll/OSX")]
+        //[MenuItem("Huatuo/CompileDll/OSX")]
         public static void CompileDllOSX()
         {
             var target = BuildTarget.StandaloneOSX;
             CompileDll(GetDllBuildOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/CompileDll/Android")]
+        //[MenuItem("Huatuo/CompileDll/Android")]
         public static void CompileDllAndroid()
         {
             var target = BuildTarget.Android;
             CompileDll(GetDllBuildOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/CompileDll/IOS")]
+        //[MenuItem("Huatuo/CompileDll/IOS")]
         public static void CompileDllIOS()
         {
             //var target = EditorUserBuildSettings.activeBuildTarget;
@@ -210,42 +210,42 @@ namespace Huatuo
             }
         }
 
-        [MenuItem("Huatuo/BuildBundles/ActiveBuildTarget")]
+        //[MenuItem("Huatuo/BuildBundles/ActiveBuildTarget")]
         public static void BuildSeneAssetBundleActiveBuildTarget()
         {
             var target = EditorUserBuildSettings.activeBuildTarget;
             BuildAssetBundles(GetAssetBundleTempDirByTarget(target), GetAssetBundleOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/BuildBundles/Win64")]
+        //[MenuItem("Huatuo/BuildBundles/Win64")]
         public static void BuildSeneAssetBundleWin64()
         {
             var target = BuildTarget.StandaloneWindows64;
             BuildAssetBundles(GetAssetBundleTempDirByTarget(target), GetAssetBundleOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/BuildBundles/OSX")]
+        //[MenuItem("Huatuo/BuildBundles/OSX")]
         public static void BuildSeneAssetBundleOSX64()
         {
             var target = BuildTarget.StandaloneOSX;
             BuildAssetBundles(GetAssetBundleTempDirByTarget(target), GetAssetBundleOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/BuildBundles/Linux64")]
+        //[MenuItem("Huatuo/BuildBundles/Linux64")]
         public static void BuildSeneAssetBundleLinux64()
         {
             var target = BuildTarget.StandaloneLinux64;
             BuildAssetBundles(GetAssetBundleTempDirByTarget(target), GetAssetBundleOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/BuildBundles/Android")]
+        //[MenuItem("Huatuo/BuildBundles/Android")]
         public static void BuildSeneAssetBundleAndroid()
         {
             var target = BuildTarget.Android;
             BuildAssetBundles(GetAssetBundleTempDirByTarget(target), GetAssetBundleOutputDirByTarget(target), target);
         }
 
-        [MenuItem("Huatuo/BuildBundles/IOS")]
+        //[MenuItem("Huatuo/BuildBundles/IOS")]
         public static void BuildSeneAssetBundleIOS()
         {
             var target = BuildTarget.iOS;

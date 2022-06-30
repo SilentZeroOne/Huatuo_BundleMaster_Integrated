@@ -2,11 +2,12 @@
     "name": "Hotfix",
     "rootNamespace": "",
     "references": [
-        "GUID:0b2e08c76d819be45a15b1b274edfa8d"
+        "GUID:0b2e08c76d819be45a15b1b274edfa8d",
+        "GUID:b98a4eaf01896f5418b13b9950aabd98"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,

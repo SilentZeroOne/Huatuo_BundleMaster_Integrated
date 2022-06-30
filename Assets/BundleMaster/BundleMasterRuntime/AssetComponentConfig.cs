@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace BM
 {
@@ -31,6 +32,9 @@ namespace BM
         /// 默认加载的Bundle名
         /// </summary>
         public static string DefaultBundlePackageName = "";
+        
+        public static List<string> HotfixDlls = new List<string>() { "HotFix.dll" };
+        public static List<string> AotDlls = new List<string>() { "mscorlib.dll", "System.dll", "System.Core.dll" };
         
         private static void InitRuntimeConfig()
         {

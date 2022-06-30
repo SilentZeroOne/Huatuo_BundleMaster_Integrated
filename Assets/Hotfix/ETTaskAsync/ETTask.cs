@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
-
+#pragma warning disable CS0436
 namespace ET
 {
     [AsyncMethodBuilder(typeof (ETAsyncTaskMethodBuilder))]

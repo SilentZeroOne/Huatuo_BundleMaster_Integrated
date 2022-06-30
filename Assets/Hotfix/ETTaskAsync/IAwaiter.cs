@@ -1,5 +1,6 @@
-﻿namespace ET
+﻿namespace Hotfix.ET
 {
+#pragma warning disable CS0436
     public enum AwaiterStatus: byte
     {
         /// <summary>The operation has not yet completed.</summary>

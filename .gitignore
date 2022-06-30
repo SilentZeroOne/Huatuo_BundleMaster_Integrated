@@ -35,3 +35,7 @@
 /HuatuoData/AssembliesPostIl2CppStrip/
 /Assets/HuatuoBuildCache
 /Assets/StreamingAssets
+/Assets/Plugins
+/Assets/Plugins.meta
+Assets/Resources/DOTweenSettings.asset
+Assets/Resources/DOTweenSettings.asset.meta
